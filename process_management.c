@@ -30,19 +30,14 @@ int main() {
             printf("Child %d (PID: %d) executing...\n", i, getpid());
             execute_command();
         }
-    
+        
         pid_t child_pid = wait(&status);
-
+        
         if (WIFEXITED(status)) {
             printf("Child with PID %d exited normally with status %d\n", child_pid, WEXITSTATUS(status));
         } else if (WIFSIGNALED(status)) {
             printf("Child with PID %d terminated by signal %d\n", child_pid, WTERMSIG(status));
         }
-    }
-
-    // Parent process waits for all children
-    for (int i = 0; i < NUM_CHILDREN; i++) {
-        
     }
 
     printf("All child processes completed.\n");
